@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyangshu Codex</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Telegram Web Apps SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Header with user info -->
+        <header>
+            <h1>Priyangshu Codex</h1>
+            <div id="user-info" class="user-info"></div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-section="dashboard">Dashboard</button>
+            <button class="tab-btn" data-section="generator">Code Gen</button>
+            <button class="tab-btn" data-section="error-fixer">Error Fix</button>
+            <button class="tab-btn" data-section="snippets">Snippets</button>
+            <button class="tab-btn" data-section="prompt-gen">Prompts</button>
+            <button class="tab-btn" data-section="settings">Settings</button>
+        </nav>
+
+        <!-- Main content area: sections are shown/hidden via JS -->
+        <main>
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h2>Dashboard</h2>
+                <div class="card">
+                    <p>Welcome to Priyangshu Codex, your AI coding assistant inside Telegram.</p>
+                    <p>Use the tabs above to access tools:</p>
+                    <ul>
+                        <li><strong>Code Generator</strong> – Generate code from prompts</li>
+                        <li><strong>Error Fix Tool</strong> – Debug error messages</li>
+                        <li><strong>Snippet Library</strong> – Ready‑to‑use code snippets</li>
+                        <li><strong>Prompt Generator</strong> – Craft professional AI prompts</li>
+                        <li><strong>Settings</strong> – Configure your OpenRouter API key</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Code Generator Section -->
+            <section id="generator" class="section">
+                <h2>AI Code Generator</h2>
+                <div class="card">
+                    <label for="gen-prompt">Describe what you want to code:</label>
+                    <textarea id="gen-prompt" rows="4" placeholder="e.g., Create a Python Telegram bot..."></textarea>
+                    <button id="gen-btn" class="primary-btn">Generate Code</button>
+                    <div id="gen-result" class="result-box hidden">
+                        <pre><code id="gen-code"></code></pre>
+                        <button id="gen-send" class="send-btn">Send to Telegram</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Fix Tool Section -->
+            <section id="error-fixer" class="section">
+                <h2>Error Fix Tool</h2>
+                <div class="card">
+                    <label for="error-input">Paste error message:</label>
+                    <textarea id="error-input" rows="4" placeholder="e.g., ModuleNotFoundError: requests"></textarea>
+                    <button id="fix-btn" class="primary-btn">Fix Error</button>
+                    <div id="fix-result" class="result-box hidden">
+                        <div id="fix-content"></div>
+                        <button id="fix-send" class="send-btn">Send to Telegram</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Snippet Library Section -->
+            <section id="snippets" class="section">
+                <h2>Code Snippet Library</h2>
+                <div class="card">
+                    <div class="category-tabs">
+                        <button class="category-btn active" data-cat="python">Python</button>
+                        <button class="category-btn" data-cat="lua">Lua</button>
+                        <button class="category-btn" data-cat="cpp">C++</button>
+                        <button class="category-btn" data-cat="android">Android</button>
+                        <button class="category-btn" data-cat="termux">Termux</button>
+                    </div>
+                    <div id="snippet-list" class="snippet-list"></div>
+                    <div id="snippet-display" class="result-box hidden">
+                        <pre><code id="snippet-code"></code></pre>
+                        <button id="snippet-send" class="send-btn">Send to Telegram</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prompt Generator Section -->
+            <section id="prompt-gen" class="section">
+                <h2>Prompt Generator</h2>
+                <div class="card">
+                    <label for="prompt-category">Category:</label>
+                    <select id="prompt-category">
+                        <option value="coding">Coding</option>
+                        <option value="scripting">Scripting</option>
+                        <option value="automation">Automation</option>
+                        <option value="modding">Modding</option>
+                    </select>
+                    <label for="prompt-desc">Description (optional):</label>
+                    <textarea id="prompt-desc" rows="3" placeholder="What should the prompt be about?"></textarea>
+                    <button id="prompt-btn" class="primary-btn">Generate Prompt</button>
+                    <div id="prompt-result" class="result-box hidden">
+                        <div id="prompt-content"></div>
+                        <button id="prompt-send" class="send-btn">Send to Telegram</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="section">
+                <h2>Settings</h2>
+                <div class="card">
+                    <label for="api-key">OpenRouter API Key:</label>
+                    <input type="password" id="api-key" placeholder="sk-or-v1-..." value="">
+                    <small>Your key is stored locally in your browser.</small>
+                    <label for="model-select">Model:</label>
+                    <select id="model-select">
+                        <option value="anthropic/claude-3.5-sonnet">Claude 3.5 Sonnet</option>
+                        <option value="openai/gpt-4o">GPT-4o</option>
+                        <option value="google/gemini-pro">Gemini Pro</option>
+                        <option value="meta-llama/llama-3-70b">Llama 3 70B</option>
+                    </select>
+                    <button id="save-settings" class="primary-btn">Save Settings</button>
+                    <div id="settings-status"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
