@@ -73,7 +73,7 @@ async function callOpenRouter(systemPrompt, userPrompt) {
                 { role: 'user', content: userPrompt }
             ],
             temperature: 0.7,
-            max_tokens: 706
+            max_tokens: 567
         })
     });
 
